@@ -1,6 +1,6 @@
 {
   "name": "@mxjs/app",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "index.js",
   "license": "MIT",
   "publishConfig": {
@@ -16,7 +16,7 @@
     "history": "^4.10.1"
   },
   "devDependencies": {
-    "babel-preset-miaoxing": "^0.1.1",
+    "babel-preset-miaoxing": "^0.1.2",
     "jest": "^26.0.1",
     "miaoxing-coding-standards": "^5.3.1",
     "query-string": "^6.12.1"
