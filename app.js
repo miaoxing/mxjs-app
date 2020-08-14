@@ -75,7 +75,7 @@ function generateUrl(url = '', argsOrParams = {}, params = {}) {
   }
 
   if (url.indexOf('%s') !== -1) {
-    url = appendUrl(url, argsOrParams)
+    url = appendUrl(url, argsOrParams);
     argsOrParams = params;
   }
 

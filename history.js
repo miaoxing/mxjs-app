@@ -8,6 +8,6 @@ history.reload = function () {
   }
   this.location.state.__reload = new Date();
   this.replace(this.location);
-}
+};
 
 export default history;
