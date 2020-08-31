@@ -72,7 +72,6 @@ export default class Router {
       }
 
       const hasNext = this.hasNext(next);
-      console.log('#', filePath, urlPaths[depth], hasNext, isLast, this.isEnded(next, hasNext))
       if (isLast && this.isEnded(next, hasNext)) {
         matches.push(filePath);
         return {...next, paths: matches};
