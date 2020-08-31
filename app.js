@@ -28,16 +28,19 @@ class App {
   baseApiUrl = '';
 
   namespace = '';
-  controller = '';
-  action = '';
   id = '';
+
+  /**
+   * @experimental
+   */
+  page;
 
   url(url = '', argsOrParams, params) {
     return this.baseUrl + '/' + generateUrl(url, argsOrParams, params);
   }
 
   apiUrl(url = '', argsOrParams, params) {
-    url = (app.namespace ? (app.namespace + '-api') : 'api') + '/' + url;
+    url = (this.isAdmin() ? 'admin-api' : 'api') + '/' + url;
     return this.baseApiUrl + this.url(url, argsOrParams, params);
   }
 
@@ -47,6 +50,10 @@ class App {
    * @link http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
    */
   req(name, url) {
+    if (this.page && typeof this.page.params[name] !== 'undefined') {
+      return this.page.params[name];
+    }
+
     if (!url) {
       url = window.location.href;
     }
@@ -64,6 +71,24 @@ class App {
 
   isUrlRewrite() {
     return !this.req('r');
+  }
+
+  /**
+   * @private
+   */
+  isAdmin() {
+    return this.getPathInfo().indexOf('/admin') === 0;
+  }
+
+  /**
+   * @private
+   */
+  getPathInfo() {
+    if (this.isUrlRewrite()) {
+      return window.location.pathname.substr(this.baseUrl.length);
+    } else {
+      return '/' + app.req('r');
+    }
   }
 }
 
