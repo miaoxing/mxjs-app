@@ -14,7 +14,7 @@ export default class Req extends Base {
     super(options);
 
     // @ts-ignore
-    if (typeof miaoxing.baseUrl !== 'undefined') {
+    if (typeof miaoxing !== 'undefined' && miaoxing.baseUrl) {
       // @ts-ignore
       this.baseUrl = miaoxing.baseUrl;
     }
