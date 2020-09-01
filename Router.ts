@@ -1,4 +1,6 @@
-export default class Router {
+import Base from './Base';
+
+export default class Router extends Base {
   protected pages: any;
 
   public match(pathInfo: string) {
