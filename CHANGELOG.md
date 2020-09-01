@@ -1,3 +1,17 @@
+# [0.2.0](https://github.com/miaoxing/mxjs-app/compare/v0.1.4...v0.2.0) (2020-09-01)
+
+
+### Code Refactoring
+
+* 前端控制器改为 page 模式 ([a154760](https://github.com/miaoxing/mxjs-app/commit/a154760018e37c8e6cbd564fe0af3a797159f4f6))
+* 重构 app 包，增加 Req，Url，Event 服务，统一配置 ([7547d72](https://github.com/miaoxing/mxjs-app/commit/7547d72b12672e8f43ee628304f2178c94fe1522))
+
+
+### BREAKING CHANGES
+
+* 重构 app 包，增加 Req，Url，Event 等服务，统一配置
+* 前端控制器改为 page 模式
+
 ## [0.1.4](https://github.com/miaoxing/mxjs-app/compare/v0.1.3...v0.1.4) (2020-08-17)
 
 
