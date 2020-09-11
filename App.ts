@@ -28,7 +28,7 @@ export default class App extends Base {
     const page = this.router.match(pathInfo);
 
     this.page = page;
-    this.req.setRouterParams(page.params || {});
+    this.req.setRouterParams(page ? page.params : {});
 
     return page;
   }
