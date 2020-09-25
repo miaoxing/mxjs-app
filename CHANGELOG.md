@@ -1,3 +1,19 @@
+## [0.2.1](https://github.com/miaoxing/mxjs-app/compare/v0.2.0...v0.2.1) (2020-09-25)
+
+
+### Bug Fixes
+
+* **Router:** 没有匹配到页面, page.params 错误 ([1ba5432](https://github.com/miaoxing/mxjs-app/commit/1ba5432ad52a3da67e616fcdad09c9897d83327b))
+
+
+
+
+
+### Dependencies
+
+* **append-url:** upgrade from 1.0.3 to 1.0.4
+* **@miaoxing/dev:** upgrade from 6.1.1 to 6.1.2
+
 # [0.2.0](https://github.com/miaoxing/mxjs-app/compare/v0.1.4...v0.2.0) (2020-09-01)
 
 
