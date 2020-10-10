@@ -11,7 +11,10 @@ export default class App extends Base {
    * @experimental
    * @todo 考虑改为独立对象
    */
-  public page: any = {};
+  public page: any = {
+    collection: '',
+    index: false,
+  };
 
   protected req: Req;
 
