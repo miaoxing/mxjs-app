@@ -9,6 +9,14 @@ export default class Url extends Base {
   baseApiUrl = '';
 
   /**
+   * @type {Array}
+   * @experimental
+   */
+  passThroughParams = [
+    'appId',
+  ];
+
+  /**
    * @type {Req}
    */
   req;
@@ -28,11 +36,30 @@ export default class Url extends Base {
   }
 
   appendUrl(url = '', argsOrParams = {}, params = {}) {
+    // params may be null
+    argsOrParams || (argsOrParams = {});
+    params || (params = {});
+
+    const hasArgs = url.indexOf('%s') !== -1;
+
+    let real;
+    if (hasArgs) {
+      real = params;
+    } else {
+      real = argsOrParams;
+    }
+
+    this.passThroughParams.forEach(param => {
+      if (typeof real[param] === 'undefined' && this.req.get(param)) {
+        real[param] = this.req.get(param);
+      }
+    });
+
     if (this.req.isUrlRewrite()) {
       return appendUrl(url, argsOrParams, params);
     }
 
-    if (url.indexOf('%s') !== -1) {
+    if (hasArgs) {
       url = appendUrl(url, argsOrParams);
       argsOrParams = params;
     }
