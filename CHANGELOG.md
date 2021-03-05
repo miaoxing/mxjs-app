@@ -1,3 +1,10 @@
+## [0.2.2](https://github.com/miaoxing/mxjs-app/compare/v0.2.1...v0.2.2) (2021-03-05)
+
+
+### Features
+
+* **Url:** 增加 `passThroughParams` 属性，如果当前请求存在指定参数，则将参数传递到生成 URL 中 ([867cc51](https://github.com/miaoxing/mxjs-app/commit/867cc51ce8fcc1534ac01dae0a8e248271d56a14))
+
 ## [0.2.1](https://github.com/miaoxing/mxjs-app/compare/v0.2.0...v0.2.1) (2020-09-25)
 
 
