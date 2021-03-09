@@ -1,3 +1,14 @@
+## [0.2.5](https://github.com/miaoxing/mxjs-app/compare/v0.2.4...v0.2.5) (2021-03-09)
+
+
+
+
+
+### Dependencies
+
+* **append-url:** upgrade from 1.0.6 to 1.0.7
+* **@miaoxing/dev:** upgrade from 6.3.0 to 6.3.1
+
 ## [0.2.4](https://github.com/miaoxing/mxjs-app/compare/v0.2.3...v0.2.4) (2021-03-09)
 
 
