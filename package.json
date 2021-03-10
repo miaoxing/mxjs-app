@@ -14,7 +14,10 @@
   "dependencies": {
     "append-url": "^1.0.8",
     "history": "^4.10.1",
-    "query-string": "^6.12.1"
+    "query-string": "^6.12.1",
+    "lcfirst": "^1.1.0",
+    "ucfirst": "^1.0.0",
+    "hoook": "^0.1.0"
   },
   "devDependencies": {
     "@miaoxing/dev": "^6.3.2"
