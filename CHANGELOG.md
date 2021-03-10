@@ -1,3 +1,10 @@
+## [0.2.7](https://github.com/miaoxing/mxjs-app/compare/v0.2.6...v0.2.7) (2021-03-10)
+
+
+### Bug Fixes
+
+* 增加依赖的包 ([28e92c4](https://github.com/miaoxing/mxjs-app/commit/28e92c4e333557bf2025d7b25a4cf91358f9d9eb))
+
 ## [0.2.6](https://github.com/miaoxing/mxjs-app/compare/v0.2.5...v0.2.6) (2021-03-10)
 
 
