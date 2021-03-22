@@ -1,6 +1,6 @@
 {
   "name": "@mxjs/app",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "main": "index.js",
   "license": "MIT",
   "publishConfig": {
@@ -12,7 +12,7 @@
     "test-coverage": "jest --coverage --coverageReporters text lcovonly"
   },
   "dependencies": {
-    "append-url": "^1.0.9",
+    "append-url": "^1.0.10",
     "history": "^4.10.1",
     "query-string": "^6.12.1",
     "lcfirst": "^1.1.0",
@@ -20,7 +20,7 @@
     "hoook": "^0.1.0"
   },
   "devDependencies": {
-    "@miaoxing/dev": "^6.3.3"
+    "@miaoxing/dev": "^6.3.4"
   },
   "jest": {
     "preset": "jest-preset-miaoxing"
