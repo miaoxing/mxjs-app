@@ -1,63 +1,82 @@
-import hoook from 'hoook';
-import ucfirst from 'ucfirst';
 import Base from './Base';
 
-const DEFAULT_PRIORITY = 100;
-const ee = hoook();
-
 export default class Event extends Base {
-  events = {};
-
-  plugins = {};
+  /**
+   * An object contains the event handlers
+   *
+   * @protected
+   */
+  handlers = {};
 
   /**
-   * @type {App}
+   * A callback that will called when an event triggered
+   *
+   * @protected
+   * @type Function
    */
-  app;
+  loadEvent;
 
-  loaded = {};
-  on = ee.hook;
-  off = ee.unhook;
-
-  constructor(options = {}) {
-    super(options);
-    this.app = this.wei.get('app');
+  on(name, fn, priority = 0) {
+    this.initHandlers(name, priority).push(fn);
+    return this;
   }
 
-  trigger(...args) {
-    this.loadEvent(args[0], () => {
-      ee.fire(...args);
-    });
+  off(name) {
+    delete this.handlers[name];
   }
 
-  loadEvent(event, fn) {
-    if (this.loaded[event]) {
-      fn();
-      return;
-    }
-    this.loaded[event] = true;
+  async trigger(name, args) {
+    this.loadEvent && await this.loadEvent(name);
 
-    if (typeof this.events[event] === 'undefined') {
-      fn();
-      return;
+    if (!Array.isArray(args)) {
+      args = [args];
     }
 
-    const promises = [];
-    Object.keys(this.events[event]).forEach(priority => {
-      this.events[event][priority].forEach(pluginId => {
-        if (!this.app.getPluginIds().includes(pluginId)) {
-          return;
-        }
+    let results = [];
+    const events = this.initHandlers(name);
 
-        const promise = this.plugins[pluginId]();
-        promises.push(promise);
-        promise.then(fns => {
-          priority = parseInt(priority, 10);
-          const method = 'on' + ucfirst(priority === DEFAULT_PRIORITY ? event : (event + priority));
-          this.on(event, fns.default[method], priority);
-        });
-      });
-    });
-    Promise.all(promises).then(fn);
+    // key 是数字字符串，从小到大排列，因此需反转后再调用
+    for (const priority of Object.keys(events).reverse()) {
+      const handlerResults = [];
+      for (const handler of events[priority]) {
+        handlerResults.push(handler(...args));
+      }
+      // 相同优先级的一起运行
+      results = results.concat(await Promise.all(handlerResults));
+    }
+
+    return results;
+  }
+
+  has(name) {
+    return typeof this.handlers[name] !== 'undefined';
+  }
+
+  /**
+   * @protected
+   */
+  initHandlers(name, priority) {
+    if (typeof this.handlers[name] === 'undefined') {
+      this.handlers[name] = {};
+    }
+
+    if (typeof priority !== 'undefined') {
+      if (typeof this.handlers[name][priority] === 'undefined') {
+        this.handlers[name][priority] = [];
+      }
+      return this.handlers[name][priority];
+    }
+
+    return this.handlers[name];
+  }
+
+  /**
+   * @protected
+   */
+  initHandlerPriority(name, priority) {
+    if (typeof this.handlers[name][priority] === 'undefined') {
+      this.handlers[name][priority] = [];
+    }
+    return this.handlers[name][priority];
   }
 }

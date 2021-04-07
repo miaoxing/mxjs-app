@@ -20,11 +20,19 @@ export default class App extends Base {
 
   protected router: Router;
 
+  protected loadedPluginIds: Promise<boolean>;
+
+  protected resolvePluginIds: (value: boolean) => void;
+
   constructor(options?: ServiceOptions) {
     super(options);
 
     this.req = this.wei.get('req') as Req;
     this.router = this.wei.get('router') as Router;
+
+    this.loadedPluginIds = new Promise((resolve) => {
+      this.resolvePluginIds = resolve;
+    });
   }
 
   matchLocation(location: Location) {
@@ -37,12 +45,14 @@ export default class App extends Base {
     return page;
   }
 
-  public getPluginIds() {
+  public async getPluginIds() {
+    await this.loadedPluginIds;
     return this.pluginIds;
   }
 
   public setPluginIds(pluginIds: string[]) {
     this.pluginIds = pluginIds;
+    this.resolvePluginIds(true);
     return this;
   }
 }
