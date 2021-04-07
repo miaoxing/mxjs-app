@@ -13,17 +13,23 @@ export default class Base {
     this.setOption(options);
   }
 
-  setOption(options: ServiceOptions) {
-    Object.keys(options).forEach(prop => {
-      const method = 'set' + ucfirst(prop);
+  setOption(name: ServiceOptions | string, value: any = null) {
+    if (typeof name === 'object') {
+      Object.keys(name).forEach(prop => {
+        this.setOption(prop, name[prop]);
+      });
+      return this;
+    }
+
+    const method = 'set' + ucfirst(name);
+    // @ts-ignore
+    if (typeof this[method] !== 'undefined') {
       // @ts-ignore
-      if (typeof this[method] !== 'undefined') {
-        // @ts-ignore
-        this[method](options[prop]);
-      } else {
-        // @ts-ignore
-        this[prop] = options[prop];
-      }
-    });
+      this[method](value);
+    } else {
+      // @ts-ignore
+      this[name] = value;
+    }
+    return this;
   }
 }
