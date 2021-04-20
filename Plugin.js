@@ -21,6 +21,11 @@ export default class Plugin extends Base {
 
   loadedEvents = {};
 
+  /**
+   * @private
+   */
+  waits = {};
+
   constructor(options = {}) {
     super(options);
 
@@ -31,34 +36,57 @@ export default class Plugin extends Base {
   }
 
   async loadEvent(name) {
-    if (this.loadedEvents[name]) {
-      return;
-    }
-    this.loadedEvents[name] = true;
+    return this.wait(name, async () => {
+      if (this.loadedEvents[name]) {
+        return;
+      }
+      this.loadedEvents[name] = true;
 
-    const handlers = this.events.handlers[name];
-    if (!handlers) {
-      return;
-    }
+      const handlers = this.events.handlers[name];
+      if (!handlers) {
+        return;
+      }
 
-    const promises = [];
-    const pluginIds = await this.app.getPluginIds();
+      const promises = [];
+      const pluginIds = await this.app.getPluginIds();
 
-    Object.keys(handlers).forEach(priority => {
-      handlers[priority].forEach(pluginId => {
-        priority = parseInt(priority, 10);
-        if (!pluginIds.includes(pluginId)) {
-          return;
-        }
+      Object.keys(handlers).forEach(priority => {
+        handlers[priority].forEach(pluginId => {
+          priority = parseInt(priority, 10);
+          if (!pluginIds.includes(pluginId)) {
+            return;
+          }
 
-        const promise = this.events.plugins[pluginId]();
-        promises.push(promise);
-        promise.then(fns => {
-          const method = 'on' + ucfirst(priority === DEFAULT_PRIORITY ? name : (name + priority));
-          this.event.on(name, fns.default[method], priority);
+          const promise = this.events.plugins[pluginId]();
+          promises.push(promise);
+          promise.then(fns => {
+            const method = 'on' + ucfirst(priority === DEFAULT_PRIORITY ? name : (name + priority));
+            this.event.on(name, fns.default[method], priority);
+          });
         });
       });
+
+      return Promise.all(promises);
     });
-    return Promise.all(promises);
+  }
+
+  /**
+   * @private
+   */
+  async wait(name, fn) {
+    let resolve;
+
+    if (this.waits[name]) {
+      await this.waits[name];
+    } else {
+      this.waits[name] = new Promise((res) => {
+        resolve = res;
+      });
+    }
+
+    const result = await fn();
+    resolve && resolve();
+
+    return result;
   }
 }
