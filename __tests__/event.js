@@ -125,7 +125,13 @@ describe('event', () => {
       ],
     };
 
+    const loaded = {};
     event.setOption('loadEvent', (name) => {
+      if (loaded[name]) {
+        return;
+      }
+      loaded[name] = true;
+
       (map[name] || []).forEach(fn => {
         event.on(name, fn);
       });
