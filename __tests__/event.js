@@ -145,4 +145,54 @@ describe('event', () => {
 
     event.setOption('loadEvent', null);
   });
+
+  test('loadEvent parallel', async () => {
+    const map = {
+      test: [
+        () => {
+          return 'a';
+        },
+      ],
+    };
+
+    const waits = {};
+    const wait = async(name, fn) => {
+      let resolve;
+
+      if (waits[name]) {
+        await waits[name];
+      } else {
+        waits[name] = new Promise((res) => {
+          resolve = res;
+        });
+      }
+
+      const result = await fn();
+      resolve && resolve();
+
+      return result;
+    };
+
+    const loaded = {};
+    event.setOption('loadEvent', async (name) => {
+      return wait(name, async () => {
+        if (loaded[name]) {
+          return;
+        }
+        loaded[name] = true;
+
+        // 模拟并发加载慢，导致重复调用的情况
+        await new Promise(r => setTimeout(r, 10));
+
+        (map[name] || []).forEach(fn => {
+          event.on(name, fn);
+        });
+      });
+    });
+
+    const results = await Promise.all([event.trigger('test'), event.trigger('test'), event.trigger('test')]);
+    expect(results).toEqual([['a'], ['a'], ['a']]);
+
+    event.setOption('loadEvent', null);
+  });
 });
