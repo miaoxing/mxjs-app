@@ -1,3 +1,37 @@
+# [0.3.0](https://github.com/miaoxing/mxjs-app/compare/v0.2.9...v0.3.0) (2021-04-27)
+
+
+### Bug Fixes
+
+* 解决并发加载事件时，只有第一个加载到数据的问题 ([3e279e8](https://github.com/miaoxing/mxjs-app/commit/3e279e80fc3b524d9dc0c2d670203575c9ed4aa6))
+
+
+### Code Refactoring
+
+* **app:** 重构事件逻辑 ([4a203e1](https://github.com/miaoxing/mxjs-app/commit/4a203e148e910ed1fa4dcec576ba71be68287086))
+
+
+### Features
+
+* **Base:** 基类的 `setOption` 方法支持传入 `(name, value)` 两个参数 ([3e937d0](https://github.com/miaoxing/mxjs-app/commit/3e937d0fb0d8f6d9420b38d7022a63f1cd68c2cd))
+
+
+### BREAKING CHANGES
+
+* **app:** `event`: `trigger` 改为异步执行
+* 增加 `loadEvent` 属性用于外部加载事件，移除原有的加载事件逻辑
+* 调整事件的数据结构为 `{plugin: {events: {plugins, handlers}}}`
+* `app`: `getPluginIds` 方法改为异步，待接口设置了插件编号才返回
+
+
+
+
+
+### Dependencies
+
+* **append-url:** upgrade from `1.0.10` to `1.0.11`
+* **@miaoxing/dev:** upgrade from `6.3.4` to `6.4.0`
+
 ## [0.2.9](https://github.com/miaoxing/mxjs-app/compare/v0.2.8...v0.2.9) (2021-03-22)
 
 
