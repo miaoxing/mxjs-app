@@ -1,6 +1,6 @@
-// @ts-ignore
+// @ts-ignore 缺少类型声明
 import * as lcfirst from 'lcfirst';
-import Base, {ServiceOptions} from "./Base";
+import Base, {ServiceOptions} from './Base';
 
 interface Services {
   [key: string]: Base
@@ -10,7 +10,7 @@ export default class Wei extends Base {
   /**
    * 是否启用调试模式
    */
-  protected debug: boolean = true;
+  protected debug = true;
 
   protected services: Services = {};
 
@@ -19,18 +19,18 @@ export default class Wei extends Base {
     this.set('wei', this);
   }
 
-  get(name: string) {
+  get(name: string): Base {
     return this.services[name];
   }
 
-  set(name: string, service: Base) {
+  set(name: string, service: Base): this {
     this.services[name] = service;
     return this;
   }
 
-  addClasses(classes: any) {
-    let services: Services = {};
-    classes.forEach((cls: any) => {
+  addClasses(classes: Array<typeof Base>): Services {
+    const services: Services = {};
+    classes.forEach((cls: typeof Base) => {
       const name = lcfirst(cls.name);
       const service = new cls({wei: this});
       this.set(name, service);
@@ -39,7 +39,7 @@ export default class Wei extends Base {
     return services;
   }
 
-  setConfigs(configs: Record<string, Record<string, any>>) {
+  setConfigs(configs: Record<string, Record<string, unknown>>): void {
     Object.keys(configs).forEach(name => {
       const config = configs[name];
       const service = this.get(name);
@@ -50,11 +50,11 @@ export default class Wei extends Base {
     });
   }
 
-  getDebug() {
+  getDebug(): boolean {
     return this.debug;
   }
 
-  setDebug(debug: boolean) {
+  setDebug(debug: boolean): void {
     this.debug = debug;
   }
 }

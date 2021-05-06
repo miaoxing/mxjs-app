@@ -1,6 +1,8 @@
 import Req from './Req';
-import Router from "./Router";
+import Router, {MatchResult} from './Router';
 import Base, {ServiceOptions} from './Base';
+
+type Page = Partial<MatchResult>;
 
 export default class App extends Base {
   protected pluginIds: string[] = [];
@@ -11,7 +13,7 @@ export default class App extends Base {
    * @experimental
    * @todo 考虑改为独立对象
    */
-  public page: any = {
+  public page: Page = {
     collection: '',
     index: false,
   };
@@ -35,7 +37,7 @@ export default class App extends Base {
     });
   }
 
-  matchLocation(location: Location) {
+  matchLocation(location: Location): Page {
     const pathInfo = this.req.getPathInfo(location);
     const page = this.router.match(pathInfo);
 
@@ -45,12 +47,12 @@ export default class App extends Base {
     return page;
   }
 
-  public async getPluginIds() {
+  public async getPluginIds(): Promise<string[]> {
     await this.loadedPluginIds;
     return this.pluginIds;
   }
 
-  public setPluginIds(pluginIds: string[]) {
+  public setPluginIds(pluginIds: string[]): this {
     this.pluginIds = pluginIds;
     this.resolvePluginIds(true);
     return this;

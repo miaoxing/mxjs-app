@@ -1,9 +1,31 @@
 import Base from './Base';
 
-export default class Router extends Base {
-  protected pages: any;
+type Params = Record<string, string>;
 
-  public match(pathInfo: string) {
+type PagesValue = boolean | Promise<JSX.Element> | Pages | string;
+
+interface Pages {
+  index?: boolean
+  layout?: Promise<JSX.Element> | false
+  import?: Promise<JSX.Element>
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any
+}
+
+interface MatchPathsResult extends Pages {
+  paths: string[]
+}
+
+export interface MatchResult extends MatchPathsResult {
+  params: Params
+  collection: string
+}
+
+export default class Router extends Base {
+  protected pages: Pages;
+
+  public match(pathInfo: string): MatchResult | null {
     if (pathInfo.substr(0, 1) === '/') {
       pathInfo = pathInfo.substr(1);
     }
@@ -26,17 +48,17 @@ export default class Router extends Base {
     };
   }
 
-  public getPages() {
+  public getPages(): Pages {
     return this.pages;
   }
 
-  public setPages(pages: any) {
+  public setPages(pages: Pages): void {
     this.pages = pages;
   }
 
-  protected detectParams(filePaths: string[], urlPaths: string[]) {
+  protected detectParams(filePaths: string[], urlPaths: string[]): Params {
     const regex = /\[(.+?)\]/;
-    let params: any = {};
+    const params: Params = {};
     let i = -1;
     for (const path of filePaths) {
       i++;
@@ -50,7 +72,7 @@ export default class Router extends Base {
     return params;
   }
 
-  protected detectCollection(result: any, urlPaths: string[]) {
+  protected detectCollection(result: MatchPathsResult, urlPaths: string[]): string {
     if (result.index) {
       return urlPaths.join('/');
     }
@@ -60,19 +82,18 @@ export default class Router extends Base {
     return urlPaths.slice(0, -length).join('/');
   }
 
-  protected matchPaths(urlPaths: string[], filePaths: any, depth: number = 0, matches: string[] = []): any {
+  protected matchPaths(urlPaths: string[], filePaths: Pages, depth = 0, matches: string[] = []): MatchPathsResult | null {
     if (typeof urlPaths[depth] === 'undefined') {
       return null;
     }
 
     const isLast = depth + 1 === urlPaths.length;
     for (const filePath of Object.keys(filePaths)) {
-      const next: any = filePaths[filePath];
-
       if (!this.matchPath(urlPaths[depth], filePath)) {
         continue;
       }
 
+      const next = filePaths[filePath];
       const hasNext = this.hasNext(next);
       if (isLast && this.isEnded(next, hasNext)) {
         matches.push(filePath);
@@ -105,7 +126,7 @@ export default class Router extends Base {
     return this.hasVar(filePath);
   }
 
-  protected hasNext(pages: any): boolean {
+  protected hasNext(pages: PagesValue): boolean {
     if (!pages || typeof pages === 'string') {
       return false;
     }
@@ -118,11 +139,11 @@ export default class Router extends Base {
     return false;
   }
 
-  protected hasVar(path: string) {
+  protected hasVar(path: string): boolean {
     return path.includes('[');
   }
 
-  private isEnded(next: any, hasNext: boolean): boolean {
+  private isEnded(next: PagesValue, hasNext: boolean): boolean {
     if (!hasNext) {
       return true;
     }

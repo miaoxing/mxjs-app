@@ -1,19 +1,22 @@
 import Wei from './Wei';
-// @ts-ignore
+// @ts-ignore 缺少类型声明
 import * as ucfirst from 'ucfirst';
 
 export interface ServiceOptions {
-  [key: string]: any
+  [key: string]: unknown
 }
 
 export default class Base {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
+
   wei: Wei;
 
   constructor(options: ServiceOptions = {}) {
     this.setOption(options);
   }
 
-  setOption(name: ServiceOptions | string, value: any = null) {
+  setOption(name: ServiceOptions | string, value: unknown = null): this {
     if (typeof name === 'object') {
       Object.keys(name).forEach(prop => {
         this.setOption(prop, name[prop]);
@@ -22,12 +25,9 @@ export default class Base {
     }
 
     const method = 'set' + ucfirst(name);
-    // @ts-ignore
     if (typeof this[method] !== 'undefined') {
-      // @ts-ignore
       this[method](value);
     } else {
-      // @ts-ignore
       this[name] = value;
     }
     return this;
