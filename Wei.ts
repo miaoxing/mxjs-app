@@ -1,6 +1,5 @@
-// @ts-ignore 缺少类型声明
-import * as lcfirst from 'lcfirst';
 import Base, {ServiceOptions} from './Base';
+import {lcfirst} from './string';
 
 interface Services {
   [key: string]: Base

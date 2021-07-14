@@ -1,5 +1,5 @@
 import Base from './Base';
-import ucfirst from 'ucfirst';
+import {ucfirst} from './string';
 
 const DEFAULT_PRIORITY = 100;
 

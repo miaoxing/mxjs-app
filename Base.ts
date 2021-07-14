@@ -1,6 +1,5 @@
 import Wei from './Wei';
-// @ts-ignore 缺少类型声明
-import * as ucfirst from 'ucfirst';
+import {ucfirst} from './string';
 
 export interface ServiceOptions {
   [key: string]: unknown
