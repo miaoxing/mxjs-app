@@ -8,14 +8,14 @@ import Plugin from './Plugin';
 import history from './history';
 
 const wei = new Wei();
-const {req, router, url, app, event, plugin} = wei.addClasses([
-  Req,
-  Router,
-  Url,
-  App,
-  Event,
-  Plugin,
-]);
+const {req, router, url, app, event, plugin} = wei.addClasses({
+  req: Req,
+  router: Router,
+  url: Url,
+  app: App,
+  event: Event,
+  plugin: Plugin,
+});
 
 export default app;
 export {

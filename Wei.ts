@@ -27,13 +27,13 @@ export default class Wei extends Base {
     return this;
   }
 
-  addClasses(classes: Array<typeof Base>): Services {
+  addClasses(classes: Record<string, typeof Base>): Services {
     const services: Services = {};
-    classes.forEach((cls: typeof Base) => {
-      const name = lcfirst(cls.name);
-      const service = new cls({wei: this});
-      this.set(name, service);
-      services[name] = service;
+    Object.keys(classes).forEach(name => {
+      const lowerName = lcfirst(name);
+      const service = new classes[name]({wei: this});
+      this.set(lowerName, service);
+      services[lowerName] = service;
     });
     return services;
   }
