@@ -1,3 +1,24 @@
+# [0.4.0](https://github.com/miaoxing/mxjs-app/compare/v0.3.3...v0.4.0) (2022-01-12)
+
+
+### Bug Fixes
+
+* **mxjs-app:** 更改 `addClasses` 参数为对象形式，解决 `terser` 默认压缩后获取不到对象名称的问题 ([08ba182](https://github.com/miaoxing/mxjs-app/commit/08ba182cb9fa3d5e28f654d7989239c712e45cec))
+
+
+### BREAKING CHANGES
+
+* **mxjs-app:** 更改 `addClasses` 参数为对象形式，解决 `terser` 默认压缩后获取不到对象名称的问题
+
+
+
+
+
+### Dependencies
+
+* **append-url:** upgrade from `1.0.14` to `1.0.15`
+* **@miaoxing/dev:** upgrade from `8.0.0` to `8.0.1`
+
 ## [0.3.3](https://github.com/miaoxing/mxjs-app/compare/v0.3.2...v0.3.3) (2021-10-28)
 
 
