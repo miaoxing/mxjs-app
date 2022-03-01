@@ -51,9 +51,9 @@ export default class Req extends Base {
   getPathInfo(location?: Location): string {
     if (this.isUrlRewrite()) {
       const pathname = location ? location.pathname : window.location.pathname;
-      return pathname.substr(this.baseUrl.length);
+      return this.removeTrailingSlash(pathname.substr(this.baseUrl.length));
     } else {
-      return '/' + this.get('r');
+      return '/' + this.removeTrailingSlash(this.get('r').toString());
     }
   }
 
@@ -64,5 +64,9 @@ export default class Req extends Base {
   setRouterParams(params: Params): this {
     this.routerParams = params;
     return this;
+  }
+
+  private removeTrailingSlash(path: string) {
+    return path.endsWith('/') ? path.replace(/\/+$/, '') : path;
   }
 }
