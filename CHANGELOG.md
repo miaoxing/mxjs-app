@@ -1,3 +1,10 @@
+## [0.4.2](https://github.com/miaoxing/mxjs-app/compare/v0.4.1...v0.4.2) (2022-03-04)
+
+
+### Bug Fixes
+
+* **app:** 获取路径信息时，忽略结尾 `/` ([75e506e](https://github.com/miaoxing/mxjs-app/commit/75e506ebb746bf03e355c0029f25bd88e7542069))
+
 ## [0.4.1](https://github.com/miaoxing/mxjs-app/compare/v0.4.0...v0.4.1) (2022-02-05)
 
 
