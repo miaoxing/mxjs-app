@@ -26,6 +26,10 @@ export default class Url extends Base {
     this.req = this.wei.get('req');
   }
 
+  setBaseApiUrl(baseApiUrl) {
+    this.baseApiUrl = baseApiUrl.replace(/\/+$/, '');
+  }
+
   to(url = '', argsOrParams, params) {
     return this.req.getBaseUrl() + '/' + this.appendUrl(url, argsOrParams, params);
   }
