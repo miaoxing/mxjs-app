@@ -1,3 +1,10 @@
+## [0.4.3](https://github.com/miaoxing/mxjs-app/compare/v0.4.2...v0.4.3) (2022-03-31)
+
+
+### Bug Fixes
+
+* **mxjs-app:** 接口地址忽略结尾的 `/` ([901d6b0](https://github.com/miaoxing/mxjs-app/commit/901d6b0157b7b57ec3dbdf3827c7da08c68b51b5))
+
 ## [0.4.2](https://github.com/miaoxing/mxjs-app/compare/v0.4.1...v0.4.2) (2022-03-04)
 
 
