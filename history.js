@@ -1,6 +1,6 @@
-import {createBrowserHistory} from 'history';
+import {createBrowserHistory, createHashHistory} from 'history';
 
-const history = createBrowserHistory();
+const history = 'browser' === miaoxing?.routerMode ? createBrowserHistory() : createHashHistory();
 
 history.reload = function () {
   if (!this.location.state) {
