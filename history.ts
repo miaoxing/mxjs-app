@@ -2,6 +2,7 @@ import {createBrowserHistory, createHashHistory} from 'history';
 
 const history = 'browser' === miaoxing?.routerMode ? createBrowserHistory() : createHashHistory();
 
+// @ts-ignore add reload function
 history.reload = function () {
   if (!this.location.state) {
     this.location.state = {};
