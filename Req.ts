@@ -1,9 +1,11 @@
 import Base, {ServiceOptions} from './Base';
 import * as qs from 'query-string';
 import {ParsedQuery} from 'query-string';
+import history from './history';
 
 declare global {
   const miaoxing: {
+    routerMode: string;
     baseUrl: string
   };
 }
@@ -50,7 +52,7 @@ export default class Req extends Base {
 
   getPathInfo(location?: Location): string {
     if (this.isUrlRewrite()) {
-      const pathname = location ? location.pathname : window.location.pathname;
+      const pathname = location ? location.pathname : history.location.pathname;
       return this.removeTrailingSlash(pathname.substr(this.baseUrl.length));
     } else {
       return '/' + this.removeTrailingSlash(this.get('r').toString());
