@@ -9,6 +9,11 @@ export default class Url extends Base {
   baseApiUrl = '';
 
   /**
+   * @type {boolean}
+   */
+  apiRewrite = false;
+
+  /**
    * @type {Array}
    * @experimental
    */
@@ -36,10 +41,10 @@ export default class Url extends Base {
 
   api(url = '', argsOrParams, params) {
     url = (this.isAdmin() ? 'admin-api' : 'api') + '/' + url;
-    return this.baseApiUrl + this.to(url, argsOrParams, params);
+    return this.baseApiUrl + this.req.getBaseUrl() + '/' + (this.apiRewrite ? '' : 'index.php') + this.appendUrl(url, argsOrParams, params, this.apiRewrite);
   }
 
-  appendUrl(url = '', argsOrParams = {}, params = {}) {
+  appendUrl(url = '', argsOrParams = {}, params = {}, isRewrite = true) {
     // params may be null
     argsOrParams || (argsOrParams = {});
     params || (params = {});
@@ -59,7 +64,7 @@ export default class Url extends Base {
       }
     });
 
-    if (this.req.isUrlRewrite()) {
+    if (isRewrite) {
       return appendUrl(url, argsOrParams, params);
     }
 
