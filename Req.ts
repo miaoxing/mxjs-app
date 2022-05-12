@@ -4,7 +4,9 @@ import {ParsedQuery} from 'query-string';
 import history from './history';
 
 declare global {
-  const miaoxing: {
+  // @link https://stackoverflow.com/questions/59459312/using-globalthis-in-typescript
+  // eslint-disable-next-line no-var
+  var miaoxing: {
     routerMode: string;
     baseUrl: string
   };
