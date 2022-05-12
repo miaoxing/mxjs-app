@@ -4,7 +4,8 @@ import {ParsedQuery} from 'query-string';
 import history from './history';
 
 declare global {
-  const miaoxing: {
+  // @link https://stackoverflow.com/questions/59459312/using-globalthis-in-typescript
+  var miaoxing: {
     routerMode: string;
     baseUrl: string
   };
