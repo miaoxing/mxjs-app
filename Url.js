@@ -14,6 +14,13 @@ export default class Url extends Base {
   apiRewrite = false;
 
   /**
+   * 接口的路径，用于区分不同的系统，如 "m-api"
+   *
+   * @type {string}
+   */
+  apiPath = '';
+
+  /**
    * @type {Array}
    * @experimental
    */
@@ -35,12 +42,20 @@ export default class Url extends Base {
     this.baseApiUrl = baseApiUrl.replace(/\/+$/, '');
   }
 
+  setApiPath(apiPath) {
+    this.apiPath = apiPath.replace(/\/+$/, '');
+  }
+
   to(url = '', argsOrParams, params) {
     return this.req.getBaseUrl() + '/' + this.appendUrl(url, argsOrParams, params);
   }
 
   api(url = '', argsOrParams, params) {
-    url = (this.isAdmin() ? 'admin-api' : 'api') + '/' + url;
+    if (this.apiPath) {
+      url = this.apiPath + '/' + url;
+    } else {
+      url = (this.isAdmin() ? 'admin-api' : 'api') + '/' + url;
+    }
     return this.baseApiUrl + this.req.getBaseUrl() + '/' + (this.apiRewrite ? '' : 'index.php') + this.appendUrl(url, argsOrParams, params, this.apiRewrite);
   }
 
