@@ -1,3 +1,32 @@
+# [0.5.0](https://github.com/miaoxing/mxjs-app/compare/v0.4.3...v0.5.0) (2022-06-01)
+
+
+### Bug Fixes
+
+* **app:** 解决测试等场景提示错误：`ReferenceError: miaoxing is not defined` ([159ebb4](https://github.com/miaoxing/mxjs-app/commit/159ebb44e8176bd15cbc0b72d2cc17da5d04cbd5))
+
+
+### Features
+
+* **app:** Url 服务增加 `apiPath` 选项，定义了接口的路径，用于区分不同的系统 ([7753ffb](https://github.com/miaoxing/mxjs-app/commit/7753ffbb10f4bb3e88c7b28436d467b0b0a9acad))
+* **app:** 生成 URL 默认为不开启重写模式 ([5250ffa](https://github.com/miaoxing/mxjs-app/commit/5250ffa73e00283a9d2045db826cba11816a41bd))
+* **app:** 获取路径信息支持 hash 路由器模式 ([507d775](https://github.com/miaoxing/mxjs-app/commit/507d775708c0a856cbbc84483070b681b4a0558e))
+* **u, app:** 允许配置 `miaoxing.routerMode` 来指定路由模式 ([cc2b64e](https://github.com/miaoxing/mxjs-app/commit/cc2b64e6d486379ce106cbd206e772bfc2de0ddd))
+
+
+### BREAKING CHANGES
+
+* **u, app:** 默认路由模式改为 `hash`
+
+
+
+
+
+### Dependencies
+
+* **append-url:** upgrade from `1.0.16` to `1.0.17`
+* **@miaoxing/dev:** upgrade from `8.1.0` to `8.1.1`
+
 ## [0.4.3](https://github.com/miaoxing/mxjs-app/compare/v0.4.2...v0.4.3) (2022-03-31)
 
 
