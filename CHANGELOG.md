@@ -1,3 +1,10 @@
+## [0.5.1](https://github.com/miaoxing/mxjs-app/compare/v0.5.0...v0.5.1) (2022-06-06)
+
+
+### Bug Fixes
+
+* **mxjs-app:** `globalThis` 改为 `window`，解决 node 10 测试失败 ([dcae6a8](https://github.com/miaoxing/mxjs-app/commit/dcae6a8cfd0558fac7c340870d1d1ad169589544))
+
 # [0.5.0](https://github.com/miaoxing/mxjs-app/compare/v0.4.3...v0.5.0) (2022-06-01)
 
 
