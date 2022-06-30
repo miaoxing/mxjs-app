@@ -1,6 +1,7 @@
 import Base from './Base';
 import appendUrl from 'append-url';
 import qs from 'query-string';
+import history from './history';
 
 export default class Url extends Base {
   /**
@@ -48,6 +49,13 @@ export default class Url extends Base {
 
   to(url = '', argsOrParams, params) {
     return this.req.getBaseUrl() + '/' + this.appendUrl(url, argsOrParams, params);
+  }
+
+  /**
+   * @experimental
+   */
+  full(url) {
+    return history.createHref({pathname: this.to(url)});
   }
 
   api(url = '', argsOrParams, params) {
