@@ -37,7 +37,7 @@ export default class Req extends Base {
       return this.routerParams[name];
     }
 
-    const search = window.location.search;
+    const search = history.location.search;
     if (typeof this.qs[search] === 'undefined') {
       // Only cache last query string
       this.qs = {
