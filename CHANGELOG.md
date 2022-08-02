@@ -1,3 +1,19 @@
+## [0.5.3](https://github.com/miaoxing/mxjs-app/compare/v0.5.2...v0.5.3) (2022-08-02)
+
+
+### Bug Fixes
+
+* **mxjs-app:** 解决 hash 路由器模式下，`req.get` 获取不到参数值 ([42aca8c](https://github.com/miaoxing/mxjs-app/commit/42aca8c93de0e211fd55b694e33dce9a9773ea85))
+
+
+
+
+
+### Dependencies
+
+* **append-url:** upgrade from `1.0.18` to `1.0.19`
+* **@miaoxing/dev:** upgrade from `8.1.2` to `8.1.3`
+
 ## [0.5.2](https://github.com/miaoxing/mxjs-app/compare/v0.5.1...v0.5.2) (2022-07-01)
 
 
