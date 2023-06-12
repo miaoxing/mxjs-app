@@ -15,7 +15,7 @@ export default class Url extends Base {
   apiRewrite = false;
 
   /**
-   * 接口的路径，用于区分不同的系统，如 "m-api"
+   * 接口的路径，用于区分不同的系统，如 "api/admin"
    *
    * @type {string}
    */
@@ -62,7 +62,7 @@ export default class Url extends Base {
     if (this.apiPath) {
       url = this.apiPath + '/' + url;
     } else {
-      url = (this.isAdmin() ? 'admin-api' : 'api') + '/' + url;
+      url = 'api/' + (this.isAdmin() ? 'admin/' : '') + url;
     }
     return this.baseApiUrl + this.req.getBaseUrl() + '/' + (this.apiRewrite ? '' : 'index.php') + this.appendUrl(url, argsOrParams, params, this.apiRewrite);
   }

@@ -17,9 +17,9 @@ describe('app', () => {
     const originalPathname = history.location.pathname;
     history.location.pathname = '/admin';
 
-    expect(url.api('users')).toBe('/admin-api/users');
+    expect(url.api('users')).toBe('/api/admin/users');
 
-    expect(url.api('users?a=b')).toBe('/admin-api/users?a=b');
+    expect(url.api('users?a=b')).toBe('/api/admin/users?a=b');
 
     url.setOption('apiRewrite', false);
 
