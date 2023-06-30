@@ -1,3 +1,15 @@
+# [0.6.0](https://github.com/miaoxing/mxjs-app/compare/v0.5.5...v0.6.0) (2023-06-30)
+
+
+### Code Refactoring
+
+* **app:** 后台接口路径由 `admin-api` 改为 `api/admin` ([82b8f5d](https://github.com/miaoxing/mxjs-app/commit/82b8f5d4786e8818afdde9a139f1cbb0ece786f1))
+
+
+### BREAKING CHANGES
+
+* **app:** 后台接口路径由 `admin-api` 改为 `api/admin`
+
 ## [0.5.5](https://github.com/miaoxing/mxjs-app/compare/v0.5.4...v0.5.5) (2023-05-31)
 
 
