@@ -12,7 +12,7 @@ export default class Url extends Base {
   /**
    * @type {boolean}
    */
-  apiRewrite = false;
+  apiRewrite = true;
 
   /**
    * 接口的路径，用于区分不同的系统，如 "api/admin"
