@@ -1,6 +1,6 @@
 import {createBrowserHistory, createHashHistory} from 'history';
 
-const history = 'browser' === window.miaoxing?.routerMode ? createBrowserHistory() : createHashHistory();
+const history = 'hash' === window.miaoxing?.routerMode ? createHashHistory() : createBrowserHistory();
 
 // @ts-ignore add reload function
 history.reload = function () {
