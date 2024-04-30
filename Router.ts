@@ -23,7 +23,7 @@ export interface MatchResult extends MatchPathsResult {
 }
 
 export default class Router extends Base {
-  protected pages: Pages;
+  protected pages: Pages = {};
 
   public match(pathInfo: string): MatchResult | null {
     if (pathInfo.substr(0, 1) === '/') {
