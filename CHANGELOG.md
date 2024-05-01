@@ -1,3 +1,22 @@
+# [0.7.0](https://github.com/miaoxing/mxjs-app/compare/v0.6.6...v0.7.0) (2024-05-01)
+
+
+### Bug Fixes
+
+* **app:** 解决 `Router` 未设置 `pages` 时，调用 `match` 出错 ([2657cf7](https://github.com/miaoxing/mxjs-app/commit/2657cf782bfc80d7f21bb249b1cde13cfe993cdd))
+
+
+### Features
+
+* **app:** 默认 API 接口使用重写 ([f8a7f8b](https://github.com/miaoxing/mxjs-app/commit/f8a7f8b9539ab307e12761b56e6493144c0f99ca))
+* **app:** 默认路由使用 `browser` 模式 ([bca15ef](https://github.com/miaoxing/mxjs-app/commit/bca15ef61c1df7abf682df351b25a50dae0a45f4))
+
+
+### BREAKING CHANGES
+
+* **app:** 默认路由使用 `browser` 模式
+* **app:** 默认 API 接口使用重写
+
 ## [0.6.6](https://github.com/miaoxing/mxjs-app/compare/v0.6.5...v0.6.6) (2024-03-31)
 
 
