@@ -1,7 +1,6 @@
 import Base, {ServiceOptions} from './Base';
 import * as qs from 'query-string';
 import {ParsedQuery} from 'query-string';
-import history from './history';
 
 declare global {
   // @link https://stackoverflow.com/questions/59459312/using-globalthis-in-typescript
@@ -21,6 +20,8 @@ export default class Req extends Base {
 
   protected qs: Record<string, ParsedQuery> = {};
 
+  protected location: Location;
+
   constructor(options: ServiceOptions = {}) {
     super(options);
 
@@ -37,7 +38,7 @@ export default class Req extends Base {
       return this.routerParams[name];
     }
 
-    const search = history.location.search;
+    const search = this.getLocation().search;
     if (typeof this.qs[search] === 'undefined') {
       // Only cache last query string
       this.qs = {
@@ -54,7 +55,7 @@ export default class Req extends Base {
 
   getPathInfo(location?: Location): string {
     if (this.isUrlRewrite()) {
-      const pathname = location ? location.pathname : history.location.pathname;
+      const pathname = location ? location.pathname : this.getLocation().pathname;
       return this.removeTrailingSlash(pathname.substr(this.baseUrl.length));
     } else {
       return '/' + this.removeTrailingSlash(this.get('r').toString());
@@ -68,6 +69,15 @@ export default class Req extends Base {
   setRouterParams(params: Params): this {
     this.routerParams = params;
     return this;
+  }
+
+  setLocation(location: Location): this  {
+    this.location = location;
+    return this;
+  }
+
+  getLocation(): Location {
+    return this.location || window.location;
   }
 
   private removeTrailingSlash(path: string) {
