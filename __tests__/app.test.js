@@ -1,4 +1,4 @@
-import {url, history} from '../';
+import {url, req} from '../';
 
 describe('app', () => {
   test('url', () => {
@@ -14,16 +14,16 @@ describe('app', () => {
 
     expect(url.api('users?a=b')).toBe('/api/users?a=b');
 
-    const originalPathname = history.location.pathname;
-    history.location.pathname = '/admin';
-
+    req.setLocation({
+      pathname: '/admin',
+    });
     expect(url.api('users')).toBe('/api/admin/users');
 
     expect(url.api('users?a=b')).toBe('/api/admin/users?a=b');
 
     url.setOption('apiRewrite', false);
 
-    history.location.pathname = originalPathname;
+    req.setLocation(window.location);
   });
 
   test('generate api url with url rewrite', () => {

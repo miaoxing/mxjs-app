@@ -1,7 +1,6 @@
 import Base from './Base';
 import appendUrl from 'append-url';
 import qs from 'query-string';
-import history from './history';
 
 export default class Url extends Base {
   /**

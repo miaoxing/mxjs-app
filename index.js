@@ -5,7 +5,6 @@ import Req from './Req';
 import Router from './Router';
 import Url from './Url';
 import Plugin from './Plugin';
-import history from './history';
 
 const wei = new Wei();
 const {req, router, url, app, event, plugin} = wei.addClasses({
@@ -26,6 +25,4 @@ export {
   url,
   event,
   plugin,
-  // @experimental
-  history,
 };
