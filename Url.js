@@ -33,6 +33,13 @@ export default class Url extends Base {
    */
   req;
 
+  /**
+   * 后台允许返回的最大数据量
+   * @experimental
+   * @type {number}
+   */
+  maxLimit = 500;
+
   constructor(options = {}) {
     super(options);
     this.req = this.wei.get('req');
@@ -110,6 +117,13 @@ export default class Url extends Base {
     }
 
     return appendUrl('', argsOrParams);
+  }
+
+  /**
+   * @experimental
+   */
+  appendLimit(url, limit = this.maxLimit) {
+    return appendUrl(url, {limit});
   }
 
   /**
