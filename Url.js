@@ -57,13 +57,6 @@ export default class Url extends Base {
     return this.req.getBaseUrl() + '/' + this.appendUrl(url, argsOrParams, params);
   }
 
-  /**
-   * @experimental
-   */
-  full(url) {
-    return history.createHref({pathname: this.to(url)});
-  }
-
   api(url = '', argsOrParams, params) {
     if (this.apiPath) {
       url = this.apiPath + '/' + url;
