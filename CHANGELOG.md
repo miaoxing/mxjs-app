@@ -1,3 +1,18 @@
+# [0.8.0](https://github.com/miaoxing/mxjs-app/compare/v0.7.0...v0.8.0) (2024-05-30)
+
+
+### Features
+
+* **app:** `Req` 移除 `history` 依赖，允许通过设置 location 获取参数 ([5b20eb6](https://github.com/miaoxing/mxjs-app/commit/5b20eb60227725ad67d1e293eaf34e1ecf138def))
+* **app, experimental:** `URL` 增加 `appendLimit` 方法，用于给 URL 加上最大限制数量 ([1dfe0b8](https://github.com/miaoxing/mxjs-app/commit/1dfe0b82a17675b0ed8cbef5f3ec759822407451))
+* **app, experimental:** 移除 `history` 对象，改为使用 `react-router` 的 `useLocation` ([ab70c33](https://github.com/miaoxing/mxjs-app/commit/ab70c334c31526574980d45bd6c70bdff4c18173))
+* **app, experimental:** 移除 `url.full` 方法 ([4ce2f6a](https://github.com/miaoxing/mxjs-app/commit/4ce2f6a88c80ec313e125a12534b2e8baa78f988))
+
+
+### BREAKING CHANGES
+
+* **app:** `Req` 移除 `history` 依赖，允许通过设置 location 获取参数
+
 # [0.7.0](https://github.com/miaoxing/mxjs-app/compare/v0.6.6...v0.7.0) (2024-05-01)
 
 
