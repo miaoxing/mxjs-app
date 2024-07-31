@@ -1,3 +1,14 @@
+## [0.8.1](https://github.com/miaoxing/mxjs-app/compare/v0.8.0...v0.8.1) (2024-07-31)
+
+
+
+
+
+### Dependencies
+
+* **append-url:** upgrade from `1.0.27` to `1.0.28`
+* **@miaoxing/dev:** upgrade from `9.1.1` to `9.1.2`
+
 # [0.8.0](https://github.com/miaoxing/mxjs-app/compare/v0.7.0...v0.8.0) (2024-05-30)
 
 
