@@ -1,6 +1,6 @@
 {
   "name": "@mxjs/app",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "main": "index.js",
   "license": "MIT",
   "publishConfig": {
@@ -12,11 +12,11 @@
     "test-coverage": "jest --coverage --coverageReporters text lcovonly"
   },
   "dependencies": {
-    "append-url": "^1.1.1",
+    "append-url": "^1.1.2",
     "query-string": "^6.12.1"
   },
   "devDependencies": {
-    "@miaoxing/dev": "^9.3.0",
+    "@miaoxing/dev": "^9.3.1",
     "@testing-library/react": "^14"
   },
   "jest": {
